@@ -3,17 +3,38 @@ import { Link } from "react-router-dom";
 import Product from "../components/Product";
 import "../styles/store.css";
 
-export default function Store() {
+type QuantFunction = (item: number) => void;
+
+type StoreProps = {
+  products: ProductData[];
+  cartItems: CartItemProps[];
+  handleCartAdd: (item: CartItemProps) => void;
+  setProducts: (item: ProductData[]) => void;
+  handleIncrementQuantity: QuantFunction;
+  handleDecrementQuantity: QuantFunction;
+};
+
+export default function Store({
+  products,
+  setProducts,
+  cartItems,
+  handleCartAdd,
+  handleIncrementQuantity,
+  handleDecrementQuantity,
+}: StoreProps) {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string[]>([]);
-  const [products, setProducts] = useState<ProductData[]>([] as ProductData[]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const dataFetch = async () => {
-      const cats = fetch("https://fakestoreapi.com/products/categories");
-      const prods = fetch(`https://fakestoreapi.com/products`);
+      const cats = fetch("https://fakestoreapi.com/products/categories", {
+        mode: "cors",
+      });
+      const prods = fetch(`https://fakestoreapi.com/products`, {
+        mode: "cors",
+      });
 
       try {
         const result = (await Promise.all([cats, prods])).map((res) => {
@@ -40,7 +61,11 @@ export default function Store() {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   if (error) {
@@ -73,7 +98,14 @@ export default function Store() {
         </aside>
         <div className="items">
           {productsToDisplay.map((item) => (
-            <Product key={item.id} data={item} />
+            <Product
+              key={item.id}
+              data={item}
+              cartItems={cartItems}
+              handleCartAdd={handleCartAdd}
+              handleIncrement={handleIncrementQuantity}
+              handleDecrement={handleDecrementQuantity}
+            />
           ))}
         </div>
       </div>
