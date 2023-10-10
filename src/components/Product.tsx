@@ -1,14 +1,25 @@
-import { useState } from "react";
+type QuantFunction = (item: number) => void;
 
-type data = {
+type ProductProps = {
   data: ProductData;
+  cartItems: CartItemProps[];
+  handleCartAdd: (item: CartItemProps) => void;
+  handleIncrement: QuantFunction;
+  handleDecrement: QuantFunction;
 };
 
-export default function Product({ data }: data) {
-  const [inputVal, setInputVal] = useState(1);
-  const [isInCart, setIsInCart] = useState(false);
+export default function Product({
+  data,
+  cartItems,
+  handleCartAdd,
+  handleIncrement,
+  handleDecrement,
+}: ProductProps) {
+  const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
+  const quantityOfProduct = cartItems.filter((item) => item.id === data.id)[0]
+    ?.quantity;
 
-  const lessThanOne = inputVal <= 1;
+  const lessThanOne = quantityOfProduct <= 1;
 
   return (
     <div className="item">
@@ -17,18 +28,21 @@ export default function Product({ data }: data) {
         <p className="product-title">{data.title}</p>
         <p className="prod-price">{`$${data.price}`}</p>
       </div>
-      {isInCart ? (
+      {isProductInCart ? (
         <div className="quant-wrapper">
           <button
             className="decrement"
-            onClick={() => setInputVal(lessThanOne ? 1 : inputVal - 1)}
+            onClick={() => handleDecrement(data.id)}
+            disabled={lessThanOne}
           >
             -
           </button>
-          <div>{inputVal}</div>
+          <div>{quantityOfProduct}</div>
           <button
             className="increment"
-            onClick={() => setInputVal(inputVal + 1)}
+            onClick={() => {
+              handleIncrement(data.id);
+            }}
           >
             +
           </button>
@@ -36,7 +50,7 @@ export default function Product({ data }: data) {
       ) : (
         <button
           onClick={() => {
-            setIsInCart(true);
+            handleCartAdd(data as CartItemProps);
           }}
         >
           Add to Cart
