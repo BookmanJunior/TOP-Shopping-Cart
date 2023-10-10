@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;700&family=Playfair+Display&display=swap");
 
+:root {
+  --nav-height: 4rem;
+  --view-height: calc(100vh - var(--nav-height));
+  --accent-color: #d87d4a;
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -74,4 +80,29 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.loading-screen {
+  display: grid;
+  place-content: center;
+  height: var(--view-height);
+}
+
+.spinner {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 5px solid #808080;
+  border-top-color: var(--accent-color);
+  background-color: transparent;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
