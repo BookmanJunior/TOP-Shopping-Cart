@@ -2,7 +2,7 @@ header {
   display: grid;
 
   background-color: #101010;
-  height: 100vh;
+  height: var(--view-height);
   overflow: hidden;
 }
 
