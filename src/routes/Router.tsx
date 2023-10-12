@@ -11,32 +11,6 @@ export default function Router() {
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[]);
   const [cartItems, setCartItems] = useState<CartItemProps[]>([]);
 
-  function handleCartAdd(item: CartItemProps) {
-    setCartItems([...cartItems, { ...item, quantity: 1 }]);
-  }
-
-  function incrementProductQuantity(item: number) {
-    setCartItems(
-      cartItems.map((cartItem) => {
-        if (cartItem.id === item) {
-          return { ...cartItem, quantity: cartItem.quantity + 1 };
-        }
-        return cartItem;
-      })
-    );
-  }
-
-  function decrementProductQuantity(item: number) {
-    setCartItems(
-      cartItems.map((cartItem) => {
-        if (cartItem.id === item) {
-          return { ...cartItem, quantity: cartItem.quantity - 1 };
-        }
-        return cartItem;
-      })
-    );
-  }
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -59,23 +33,12 @@ export default function Router() {
               setProducts={setProducts}
               cartItems={cartItems}
               setCartItems={setCartItems}
-              handleCartAdd={handleCartAdd}
-              handleIncrementQuantity={incrementProductQuantity}
-              handleDecrementQuantity={decrementProductQuantity}
             />
           ),
         },
         {
           path: "cart",
-          element: (
-            <Cart
-              cartItems={cartItems}
-              setCartItems={setCartItems}
-              handleCartAdd={handleCartAdd}
-              handleIncrement={incrementProductQuantity}
-              handleDecrement={decrementProductQuantity}
-            />
-          ),
+          element: <Cart cartItems={cartItems} setCartItems={setCartItems} />,
         },
       ],
     },

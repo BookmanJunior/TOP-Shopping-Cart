@@ -2,25 +2,14 @@ import { Link } from "react-router-dom";
 import { CartProduct } from "../components/Product";
 import "../styles/cart.css";
 
-type QuantFunction = (item: number) => void;
-
 type CartProps = {
   cartItems: CartItemProps[];
-  handleCartAdd: (item: CartItemProps) => void;
-  handleIncrement: QuantFunction;
-  handleDecrement: QuantFunction;
   setCartItems: (arg: CartItemProps[]) => void;
 };
 
-export default function Cart({
-  cartItems,
-  setCartItems,
-  handleCartAdd,
-  handleIncrement,
-  handleDecrement,
-}: CartProps) {
-  const total: number = cartItems.reduce((prev, curr): number => {
-    return (prev + Math.round(parseFloat(curr.price))) * curr.quantity;
+export default function Cart({ cartItems, setCartItems }: CartProps) {
+  const totalCost: number = cartItems.reduce((prev, curr): number => {
+    return prev + parseFloat(curr.price) * curr.quantity;
   }, 0);
 
   return (
@@ -42,13 +31,12 @@ export default function Cart({
                 data={item}
                 cartItems={cartItems}
                 setCartItems={setCartItems}
-                handleCartAdd={handleCartAdd}
-                handleIncrement={handleIncrement}
-                handleDecrement={handleDecrement}
               />
             ))}
           </div>
-          <p className="cart-total">{`Total: $${total}`}</p>
+          <p className="cart-total">{`Total: $${parseFloat(
+            totalCost.toFixed(2)
+          )}`}</p>
         </>
       )}
     </div>

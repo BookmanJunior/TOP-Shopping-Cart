@@ -3,16 +3,11 @@ import { Link } from "react-router-dom";
 import { Product } from "../components/Product";
 import "../styles/store.css";
 
-type QuantFunction = (item: number) => void;
-
 type StoreProps = {
   products: ProductData[];
   cartItems: CartItemProps[];
   setCartItems: (arg: CartItemProps[]) => void;
-  handleCartAdd: (item: CartItemProps) => void;
   setProducts: (item: ProductData[]) => void;
-  handleIncrementQuantity: QuantFunction;
-  handleDecrementQuantity: QuantFunction;
 };
 
 export default function Store({
@@ -20,9 +15,6 @@ export default function Store({
   setProducts,
   cartItems,
   setCartItems,
-  handleCartAdd,
-  handleIncrementQuantity,
-  handleDecrementQuantity,
 }: StoreProps) {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string[]>([]);
@@ -105,9 +97,6 @@ export default function Store({
               data={item}
               cartItems={cartItems}
               setCartItems={setCartItems}
-              handleCartAdd={handleCartAdd}
-              handleIncrement={handleIncrementQuantity}
-              handleDecrement={handleDecrementQuantity}
             />
           ))}
         </div>
