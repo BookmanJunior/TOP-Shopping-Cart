@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Product from "../components/Product";
+import { Product } from "../components/Product";
 import "../styles/store.css";
 
 type QuantFunction = (item: number) => void;
@@ -8,6 +8,7 @@ type QuantFunction = (item: number) => void;
 type StoreProps = {
   products: ProductData[];
   cartItems: CartItemProps[];
+  setCartItems: (arg: CartItemProps[]) => void;
   handleCartAdd: (item: CartItemProps) => void;
   setProducts: (item: ProductData[]) => void;
   handleIncrementQuantity: QuantFunction;
@@ -18,6 +19,7 @@ export default function Store({
   products,
   setProducts,
   cartItems,
+  setCartItems,
   handleCartAdd,
   handleIncrementQuantity,
   handleDecrementQuantity,
@@ -102,6 +104,7 @@ export default function Store({
               key={item.id}
               data={item}
               cartItems={cartItems}
+              setCartItems={setCartItems}
               handleCartAdd={handleCartAdd}
               handleIncrement={handleIncrementQuantity}
               handleDecrement={handleDecrementQuantity}

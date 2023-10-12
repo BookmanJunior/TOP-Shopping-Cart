@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Nav from "../components/Nav";
 import App from "../App";
 import Store from "./Store";
 import Cart from "./Cart";
@@ -39,7 +40,11 @@ export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App />,
+      element: (
+        <App>
+          <Nav cartItemsLength={cartItems.length} />
+        </App>
+      ),
       errorElement: <ErrorPage />,
       children: [
         {
@@ -53,6 +58,7 @@ export default function Router() {
               products={products}
               setProducts={setProducts}
               cartItems={cartItems}
+              setCartItems={setCartItems}
               handleCartAdd={handleCartAdd}
               handleIncrementQuantity={incrementProductQuantity}
               handleDecrementQuantity={decrementProductQuantity}
@@ -61,7 +67,15 @@ export default function Router() {
         },
         {
           path: "cart",
-          element: <Cart cartItems={cartItems} />,
+          element: (
+            <Cart
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+              handleCartAdd={handleCartAdd}
+              handleIncrement={incrementProductQuantity}
+              handleDecrement={decrementProductQuantity}
+            />
+          ),
         },
       ],
     },
