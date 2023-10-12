@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "../styles/nav.css";
 
-export default function Nav() {
+type NavProps = {
+  cartItemsLength: number;
+};
+
+export default function Nav({ cartItemsLength }: NavProps) {
   return (
     <nav id="nav">
       <div className="nav-wrapper">
@@ -13,7 +17,13 @@ export default function Nav() {
             <Link to="../store">Store</Link>
           </li>
           <li className="nav-link">
-            <Link to="cart">Cart</Link>
+            <Link
+              to="cart"
+              className="cart-nav"
+              data-items={cartItemsLength > 0 ? `(${cartItemsLength})` : ""}
+            >
+              Cart
+            </Link>
           </li>
         </ul>
       </div>
