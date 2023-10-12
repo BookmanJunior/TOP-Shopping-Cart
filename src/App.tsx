@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Nav from "./components/Nav";
 
-export default function App() {
+type AppProps = {
+  children: JSX.Element | JSX.Element[];
+};
+
+export default function App({ children }: AppProps) {
   return (
     <>
-      <Nav />
+      {children}
       <Outlet />
     </>
   );
