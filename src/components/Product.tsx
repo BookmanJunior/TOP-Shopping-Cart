@@ -1,22 +1,10 @@
-type QuantFunction = (item: number) => void;
-
 type ProductProps = {
   data: ProductData;
   cartItems: CartItemProps[];
-  handleCartAdd: (item: CartItemProps) => void;
-  handleIncrement: QuantFunction;
-  handleDecrement: QuantFunction;
   setCartItems: (arg: CartItemProps[]) => void;
 };
 
-export function Product({
-  data,
-  cartItems,
-  setCartItems,
-  handleCartAdd,
-  handleIncrement,
-  handleDecrement,
-}: ProductProps) {
+export function Product({ data, cartItems, setCartItems }: ProductProps) {
   return (
     <div className="item">
       <img src={data.image} alt={data.title} />
@@ -25,25 +13,15 @@ export function Product({
         <p className="prod-price">{`$${data.price}`}</p>
       </div>
       <ProductButtons
-        handleDecrement={handleDecrement}
-        handleIncrement={handleIncrement}
         cartItems={cartItems}
         setCartItems={setCartItems}
-        handleCartAdd={handleCartAdd}
         data={data}
       />
     </div>
   );
 }
 
-export function CartProduct({
-  data,
-  cartItems,
-  setCartItems,
-  handleCartAdd,
-  handleIncrement,
-  handleDecrement,
-}: ProductProps) {
+export function CartProduct({ data, cartItems, setCartItems }: ProductProps) {
   return (
     <div className="cart-item">
       <div className="left-wrapper">
@@ -53,9 +31,6 @@ export function CartProduct({
       <div className="right-wrapper">
         <p className="prod-price">{`$${data.price}`}</p>
         <ProductButtons
-          handleIncrement={handleIncrement}
-          handleDecrement={handleDecrement}
-          handleCartAdd={handleCartAdd}
           cartItems={cartItems}
           setCartItems={setCartItems}
           data={data}
@@ -73,17 +48,36 @@ export function CartProduct({
   );
 }
 
-function ProductButtons({
-  handleDecrement,
-  handleIncrement,
-  cartItems,
-  setCartItems,
-  handleCartAdd,
-  data,
-}: ProductProps) {
+function ProductButtons({ cartItems, setCartItems, data }: ProductProps) {
   const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
   const quantityOfProduct = cartItems.filter((item) => item.id === data.id)[0]
     ?.quantity;
+
+  function handleCartAdd(item: CartItemProps) {
+    setCartItems([...cartItems, { ...item, quantity: 1 }]);
+  }
+
+  function handleIncrement(item: number) {
+    setCartItems(
+      cartItems.map((cartItem) => {
+        if (cartItem.id === item) {
+          return { ...cartItem, quantity: cartItem.quantity + 1 };
+        }
+        return cartItem;
+      })
+    );
+  }
+
+  function handleDecrement(item: number) {
+    setCartItems(
+      cartItems.map((cartItem) => {
+        if (cartItem.id === item) {
+          return { ...cartItem, quantity: cartItem.quantity - 1 };
+        }
+        return cartItem;
+      })
+    );
+  }
 
   const lessThanOne = quantityOfProduct <= 1;
 
