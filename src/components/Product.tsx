@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type ProductProps = {
   data: ProductData;
   cartItems: CartItemProps[];
@@ -7,11 +9,13 @@ type ProductProps = {
 export function Product({ data, cartItems, setCartItems }: ProductProps) {
   return (
     <div className="item">
-      <img src={data.image} alt={data.title} />
-      <div className="prod-details">
-        <p className="product-title">{data.title}</p>
-        <p className="prod-price">{`$${data.price}`}</p>
-      </div>
+      <Link to={`./${data.id}`}>
+        <img src={data.image} alt={data.title} />
+        <div className="prod-details">
+          <p className="product-title">{data.title}</p>
+          <p className="prod-price">{`$${data.price}`}</p>
+        </div>
+      </Link>
       <ProductButtons
         cartItems={cartItems}
         setCartItems={setCartItems}
@@ -47,7 +51,11 @@ export function CartProduct({ data, cartItems, setCartItems }: ProductProps) {
   );
 }
 
-function ProductButtons({ cartItems, setCartItems, data }: ProductProps) {
+export function ProductButtons({
+  cartItems,
+  setCartItems,
+  data,
+}: ProductProps) {
   const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
   const quantityOfProduct = cartItems.filter((item) => item.id === data.id)[0]
     ?.quantity;
