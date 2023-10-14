@@ -4,8 +4,9 @@ import Nav from "../components/Nav";
 import App from "../App";
 import Store from "./Store";
 import Cart from "./Cart";
-import Header from "../components/Header";
+import { ProductPage, ProductLoader } from "../components/ProductPage";
 import ErrorPage from "./ErrorPage";
+import Homepage from "./Homepage";
 
 export default function Router() {
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[]);
@@ -23,7 +24,7 @@ export default function Router() {
       children: [
         {
           index: true,
-          element: <Header />,
+          element: <Homepage />,
         },
         {
           path: "store",
@@ -35,6 +36,14 @@ export default function Router() {
               setCartItems={setCartItems}
             />
           ),
+        },
+        {
+          path: "store/:id",
+          element: (
+            <ProductPage cartItems={cartItems} setCartItems={setCartItems} />
+          ),
+          //@ts-ignore
+          loader: ProductLoader,
         },
         {
           path: "cart",
