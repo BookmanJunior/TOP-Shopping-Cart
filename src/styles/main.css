@@ -3,7 +3,10 @@
 :root {
   --nav-height: 4rem;
   --view-height: calc(100vh - var(--nav-height));
+  --primary-bg: #f2f2f5;
+  --primary-product-bg: #ffffff;
   --accent-color: #d87d4a;
+  --gap-size: 1em;
 }
 
 /*
@@ -73,13 +76,17 @@ h6 {
 body {
   font-family: Manrope, sans-serif;
   min-height: 100vh;
-  background-color: #f2f2f5;
+  background-color: var(--primary-bg);
 }
 
 button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 .loading-screen {
@@ -105,4 +112,13 @@ button {
   to {
     transform: rotate(360deg);
   }
+}
+
+.quant-wrapper {
+  background-color: var(--primary-bg);
+  padding: 0.5em 1em;
+}
+
+.quant-wrapper > button:hover {
+  color: var(--accent-color);
 }
