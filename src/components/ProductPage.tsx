@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { ProductButtons } from "./Product";
+import "../styles/productPage.css";
 
 type paramsProps = {
   params: ProductData;
@@ -30,15 +31,18 @@ export function ProductPage({ cartItems, setCartItems }: ProductPageProps) {
           <img src={product.image} alt={product.title} />
         </div>
         <div className="product-details">
-          <p>{product.title}</p>
-          <p>{product.description}</p>
-          <p>${product.price}</p>
+          <p className="prod-title">{product.title}</p>
+          <p className="prod-price">${product.price}</p>
+          <ProductButtons
+            data={product}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+          />
         </div>
-        <ProductButtons
-          data={product}
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-        />
+        <div className="product-description-wrapper">
+          <p>Product Description</p>
+          <p className="prod-desc">{product.description}</p>
+        </div>
       </div>
     </div>
   );
