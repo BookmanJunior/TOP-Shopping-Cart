@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 }
 
 .nav-wrapper {
@@ -41,8 +42,13 @@
   transition: 200ms ease-in-out;
 }
 
-.nav-link a:hover {
+.nav-link:hover a {
   color: var(--accent-color);
+}
+
+.cart-nav::after {
+  content: attr(data-items);
+  margin-inline: 5px;
 }
 
 .cart-btn:hover #cart > path {
