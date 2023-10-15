@@ -1,5 +1,4 @@
 import HeroImage from "../assets/image-hero.png";
-import "../styles/header.css";
 
 export default function Header() {
   return (

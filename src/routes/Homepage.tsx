@@ -4,6 +4,7 @@ import JewelryImg from "../assets/jewelry.avif";
 import MClothingImg from "../assets/men's clothing.jpg";
 import WClothingImg from "../assets/women's clothing.avif";
 import FeaturedCard from "../components/FeaturedCard";
+import "../styles/homepage.css";
 
 export function Homepage() {
   return (
