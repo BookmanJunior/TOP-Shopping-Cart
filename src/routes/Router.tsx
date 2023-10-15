@@ -6,7 +6,7 @@ import Store from "./Store";
 import Cart from "./Cart";
 import { ProductPage, ProductLoader } from "../components/ProductPage";
 import ErrorPage from "./ErrorPage";
-import Homepage from "./Homepage";
+import { Homepage, CategoryLoader } from "./Homepage";
 
 export default function Router() {
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[]);
@@ -25,6 +25,26 @@ export default function Router() {
         {
           index: true,
           element: <Homepage />,
+        },
+        {
+          path: "category/:name",
+          element: (
+            <Store
+              setProducts={setProducts}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
+          ),
+          //@ts-ignore
+          loader: CategoryLoader,
+        },
+        {
+          path: "category/:name/:id",
+          element: (
+            <ProductPage cartItems={cartItems} setCartItems={setCartItems} />
+          ),
+          //@ts-ignore
+          loader: ProductLoader,
         },
         {
           path: "store",
