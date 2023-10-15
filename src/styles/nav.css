@@ -1,5 +1,7 @@
 .nav-container,
-.nav-links {
+.nav-links,
+.nav-wrapper,
+#nav {
   display: flex;
 }
 
@@ -10,7 +12,6 @@
   background-color: #101010;
   padding-inline: 1rem;
 
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 99;
@@ -19,12 +20,11 @@
 .nav-wrapper {
   font-weight: 700;
   line-height: 1.5;
-  max-width: 1100px;
+  width: min(1200px, 100%);
   height: var(--nav-height);
   margin-inline: auto;
 
-  display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -38,7 +38,7 @@
 
 .nav-link a {
   text-decoration: none;
-  color: white;
+  color: var(--secondary-text-clr);
   transition: 200ms ease-in-out;
 }
 

@@ -45,7 +45,10 @@ header {
 }
 
 .featured-categories-wrapper {
-  padding-block: var(--gap-size);
+  padding: var(--gap-size);
+  text-align: center;
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 .section-title,
@@ -57,19 +60,17 @@ header {
 }
 
 .section-title {
-  margin-block: var(--gap-size);
-  text-align: center;
+  margin-block: calc(var(--gap-size) - 0.2em);
 }
 
 .featured-categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 0.8fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 0.8fr));
   gap: var(--gap-size);
   justify-content: center;
 }
 
 .featured-category {
-  min-height: 300px;
   overflow: hidden;
   text-decoration: none;
 
