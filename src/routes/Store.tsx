@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { Product } from "../components/Product";
+import FetchProducts from "../components/FetchProducts";
 import "../styles/store.css";
 
 type StoreProps = {
-  products: ProductData[];
+  products?: ProductData[];
   cartItems: CartItemProps[];
   setCartItems: (arg: CartItemProps[]) => void;
   setProducts: (item: ProductData[]) => void;
@@ -16,40 +17,17 @@ export default function Store({
   cartItems,
   setCartItems,
 }: StoreProps) {
+  const isProducts = products ?? (useLoaderData() as ProductData[]);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const { isLoading, error } = FetchProducts({
+    products,
+    setProducts,
+    setCategories,
+  });
 
-  useEffect(() => {
-    const dataFetch = async () => {
-      const cats = fetch("https://fakestoreapi.com/products/categories", {
-        mode: "cors",
-      });
-      const prods = fetch(`https://fakestoreapi.com/products`, {
-        mode: "cors",
-      });
-
-      try {
-        const result = (await Promise.all([cats, prods])).map((res) => {
-          if (res.ok) return res.json();
-
-          throw new Error();
-        });
-        const [categoriesResult, productsResult] = await Promise.all(result);
-        setCategories(categoriesResult);
-        setProducts(productsResult);
-      } catch (error) {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    dataFetch();
-  }, []);
-
-  const productsToDisplay = products?.filter((item) => {
-    if (!activeCategory.length) return products;
+  const productsToDisplay = isProducts?.filter((item) => {
+    if (!activeCategory.length) return isProducts;
 
     return activeCategory.includes(item.category);
   });
@@ -74,24 +52,26 @@ export default function Store({
   return (
     <>
       <div className="store">
-        <aside className="categories">
-          <div className="categories-wrapper">
-            {categories.map((item) => (
-              <label key={item}>
-                <input
-                  type="checkbox"
-                  name="category"
-                  id={item}
-                  value={item}
-                  onChange={() => handleSetActiveCategory(item)}
-                />
-                {item}
-              </label>
-            ))}
-          </div>
-        </aside>
+        {products && (
+          <aside className="categories">
+            <div className="categories-wrapper">
+              {categories.map((item) => (
+                <label key={item}>
+                  <input
+                    type="checkbox"
+                    name="category"
+                    id={item}
+                    value={item}
+                    onChange={() => handleSetActiveCategory(item)}
+                  />
+                  {item}
+                </label>
+              ))}
+            </div>
+          </aside>
+        )}
         <div className="items">
-          {productsToDisplay.map((item) => (
+          {productsToDisplay?.map((item) => (
             <Product
               key={item.id}
               data={item}
