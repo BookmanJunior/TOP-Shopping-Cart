@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 
 type FetchProductsProps = {
+  products: any;
   setProducts: (arg0: ProductData[]) => void;
   setCategories: (arg0: string[]) => void;
 };
 
 export default function FetchProducts({
+  products,
   setProducts,
   setCategories,
 }: FetchProductsProps) {
@@ -36,8 +38,12 @@ export default function FetchProducts({
         setIsLoading(false);
       }
     };
-    dataFetch();
-  }, []);
+    if (products !== undefined) {
+      dataFetch();
+    } else {
+      setIsLoading(false);
+    }
+  }, [products]);
 
   return { isLoading, error };
 }
