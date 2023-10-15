@@ -6,6 +6,8 @@
   --primary-bg: #f2f2f5;
   --primary-product-bg: #ffffff;
   --accent-color: #d87d4a;
+  --main-text-clr: #000000;
+  --secondary-text-clr: #ffffff;
   --gap-size: 1em;
 }
 
@@ -112,6 +114,38 @@ button {
   to {
     transform: rotate(360deg);
   }
+}
+
+.add-to-cart-btn {
+  background-color: var(--accent-color);
+  outline: 1px solid var(--accent-color);
+  color: var(--secondary-text-clr);
+}
+
+.add-to-cart-btn,
+.quant-wrapper {
+  padding: 0.5em 1em;
+}
+
+.add-to-cart-btn:hover,
+.add-to-cart-btn:focus {
+  outline-offset: 2px;
+}
+
+a > img {
+  width: 60%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  margin-inline: auto;
+  transition: 150ms ease-in-out;
+}
+.item > a {
+  text-decoration: none;
+  color: var(--main-text-clr);
+}
+
+a:hover > img {
+  scale: 1.1;
 }
 
 .quant-wrapper {
