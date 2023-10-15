@@ -12,18 +12,20 @@
 }
 
 .categories-wrapper {
-  padding-inline: 1em;
+  padding: var(--gap-size);
+  background-color: var(--primary-product-bg);
+  text-transform: uppercase;
 }
 
 .categories-wrapper,
 .item {
   flex-direction: column;
+  border-radius: 8px;
 }
 
 .item {
   background-color: var(--primary-product-bg);
   padding: var(--gap-size);
-  border-radius: 8px;
   overflow: hidden;
 
   display: grid;
@@ -57,7 +59,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   flex: 1;
-  gap: 1em;
+  gap: var(--gap-size);
 }
 
 label {
