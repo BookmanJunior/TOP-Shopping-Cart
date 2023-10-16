@@ -6,7 +6,7 @@ import WClothingImg from "../assets/women's clothing.avif";
 import FeaturedCard from "../components/FeaturedCard";
 import "../styles/homepage.css";
 
-export function Homepage() {
+export default function Homepage() {
   return (
     <>
       <Header />
@@ -24,18 +24,4 @@ export function Homepage() {
       </section>
     </>
   );
-}
-
-type CategoryLoaderProps = {
-  params: { name: string };
-};
-
-export async function CategoryLoader({ params }: CategoryLoaderProps) {
-  const res = await fetch(
-    `https://fakestoreapi.com/products/category/${params.name}`
-  );
-
-  if (res.ok) return res.json();
-
-  throw new Error();
 }

@@ -4,9 +4,10 @@ import Nav from "../components/Nav";
 import App from "../App";
 import Store from "./Store";
 import Cart from "./Cart";
+import Homepage from "./Homepage";
+import { Category, CategoryLoader } from "./Category";
 import { ProductPage, ProductLoader } from "../components/ProductPage";
 import ErrorPage from "./ErrorPage";
-import { Homepage, CategoryLoader } from "./Homepage";
 
 export default function Router() {
   const [products, setProducts] = useState<ProductData[]>([] as ProductData[]);
@@ -29,11 +30,7 @@ export default function Router() {
         {
           path: "category/:name",
           element: (
-            <Store
-              setProducts={setProducts}
-              cartItems={cartItems}
-              setCartItems={setCartItems}
-            />
+            <Category cartItems={cartItems} setCartItems={setCartItems} />
           ),
           //@ts-ignore
           loader: CategoryLoader,
