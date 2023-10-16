@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { ProductButtons } from "./Product";
+import { ProductButtons } from "../components/Product";
 import "../styles/productPage.css";
 
 type paramsProps = {
