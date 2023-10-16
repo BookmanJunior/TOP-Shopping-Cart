@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Product } from "../components/Product";
+import CategoriesAside from "../components/CategoriesAside";
 import FetchProducts from "../components/FetchProducts";
 import "../styles/store.css";
 
 type StoreProps = {
-  products?: ProductData[];
+  products: ProductData[];
   cartItems: CartItemProps[];
   setCartItems: (arg: CartItemProps[]) => void;
   setProducts: (item: ProductData[]) => void;
@@ -17,17 +18,15 @@ export default function Store({
   cartItems,
   setCartItems,
 }: StoreProps) {
-  const isProducts = products ?? (useLoaderData() as ProductData[]);
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string[]>([]);
   const { isLoading, error } = FetchProducts({
-    products,
     setProducts,
     setCategories,
   });
 
-  const productsToDisplay = isProducts?.filter((item) => {
-    if (!activeCategory.length) return isProducts;
+  const productsToDisplay: ProductData[] = products?.filter((item) => {
+    if (!activeCategory.length) return products;
 
     return activeCategory.includes(item.category);
   });
@@ -52,24 +51,10 @@ export default function Store({
   return (
     <>
       <div className="store">
-        {products && (
-          <aside className="categories">
-            <div className="categories-wrapper">
-              {categories.map((item) => (
-                <label key={item}>
-                  <input
-                    type="checkbox"
-                    name="category"
-                    id={item}
-                    value={item}
-                    onChange={() => handleSetActiveCategory(item)}
-                  />
-                  {item}
-                </label>
-              ))}
-            </div>
-          </aside>
-        )}
+        <CategoriesAside
+          categories={categories}
+          handleActiveCategory={handleSetActiveCategory}
+        />
         <div className="items">
           {productsToDisplay?.map((item) => (
             <Product
