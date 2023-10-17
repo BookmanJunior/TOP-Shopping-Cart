@@ -10,6 +10,7 @@ export default function CategoriesAside({
   return (
     <aside className="categories">
       <div className="categories-wrapper">
+        <span className="aside-categories-title">Categories</span>
         {categories.map((item) => (
           <label key={item}>
             <input
