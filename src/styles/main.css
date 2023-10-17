@@ -91,6 +91,23 @@ button {
   min-height: 100vh;
 }
 
+header {
+  display: grid;
+
+  background-color: #101010;
+}
+
+.category-header {
+  font-size: clamp(1rem, 0.5rem + 1.8vw, 1.8rem);
+  font-weight: 700;
+  text-align: center;
+  height: 14rem;
+  color: var(--secondary-text-clr);
+  place-content: center;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
 .loading-screen {
   display: grid;
   place-content: center;
