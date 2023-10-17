@@ -2,7 +2,7 @@ import HeroImage from "../assets/image-hero.png";
 
 export default function Header() {
   return (
-    <header>
+    <header className="homepage-header">
       <div className="product-info">
         <span className="product-new">New Product</span>
         <p className="product-name">XX99 MARK II HEADPHONES</p>
