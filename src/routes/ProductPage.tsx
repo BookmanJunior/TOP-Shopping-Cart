@@ -32,16 +32,16 @@ export function ProductPage({ cartItems, setCartItems }: ProductPageProps) {
         </div>
         <div className="product-details">
           <p className="prod-title">{product.title}</p>
+          <div className="product-description-wrapper">
+            <p>Product Description</p>
+            <p className="prod-desc">{product.description}</p>
+          </div>
           <p className="prod-price">${product.price}</p>
           <ProductButtons
             data={product}
             cartItems={cartItems}
             setCartItems={setCartItems}
           />
-        </div>
-        <div className="product-description-wrapper">
-          <p>Product Description</p>
-          <p className="prod-desc">{product.description}</p>
         </div>
       </div>
     </div>
