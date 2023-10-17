@@ -12,20 +12,26 @@ type CategoryLoaderProps = {
 
 export function Category({ cartItems, setCartItems }: CategoryProps) {
   const categoryData = useLoaderData() as ProductData[];
+  const categoryTitle = categoryData[0].category ?? "";
 
   return (
-    <div className="category-page-wrapper">
-      <div className="items">
-        {categoryData?.map((item) => (
-          <Product
-            key={item.id}
-            data={item}
-            cartItems={cartItems}
-            setCartItems={setCartItems}
-          />
-        ))}
+    <>
+      <header className="category-header">
+        <h1 className="category-title">{categoryTitle}</h1>
+      </header>
+      <div className="category-page-wrapper store">
+        <div className="items">
+          {categoryData?.map((item) => (
+            <Product
+              key={item.id}
+              data={item}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
