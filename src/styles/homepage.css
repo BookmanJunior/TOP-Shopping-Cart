@@ -124,6 +124,6 @@ picture > img {
 
 @media screen and (max-width: 500px) {
   .homepage-header-wrapper {
-    height: auto;
+    height: 800px;
   }
 }
