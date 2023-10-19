@@ -1,61 +1,13 @@
 import { Link } from "react-router-dom";
+import { AppContext } from "../App";
 
 type ProductProps = {
   data: ProductData;
-  cartItems: CartItemProps[];
-  setCartItems: (arg: CartItemProps[]) => void;
 };
 
-export function Product({ data, cartItems, setCartItems }: ProductProps) {
-  return (
-    <div className="item">
-      <Link to={`./${data.id}`}>
-        <img src={data.image} alt={data.title} />
-        <div className="prod-details">
-          <p className="product-title">{data.title}</p>
-          <p className="prod-price">{`$${data.price}`}</p>
-        </div>
-      </Link>
-      <ProductButtons
-        cartItems={cartItems}
-        setCartItems={setCartItems}
-        data={data}
-      />
-    </div>
-  );
-}
+export function ProductButtons({ data }: ProductProps) {
+  const { cartItems, setCartItems } = AppContext();
 
-export function CartProduct({ data, cartItems, setCartItems }: ProductProps) {
-  function handleEmptyCart() {
-    setCartItems(cartItems.filter((item) => item.id !== data.id));
-  }
-
-  return (
-    <div className="cart-item">
-      <div className="left-wrapper">
-        <img src={data.image} alt={data.title} />
-        <p className="product-title">{data.title}</p>
-      </div>
-      <div className="right-wrapper">
-        <p className="prod-price">{`$${data.price}`}</p>
-        <ProductButtons
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-          data={data}
-        />
-        <button className="remove-cart-item-btn" onClick={handleEmptyCart}>
-          Remove Item
-        </button>
-      </div>
-    </div>
-  );
-}
-
-export function ProductButtons({
-  cartItems,
-  setCartItems,
-  data,
-}: ProductProps) {
   const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
   const quantityOfProduct = cartItems.filter((item) => item.id === data.id)[0]
     ?.quantity;
@@ -113,5 +65,44 @@ export function ProductButtons({
     >
       Add to Cart
     </button>
+  );
+}
+
+export function Product({ data }: ProductProps) {
+  return (
+    <div className="item">
+      <Link to={`./${data.id}`}>
+        <img src={data.image} alt={data.title} />
+        <div className="prod-details">
+          <p className="product-title">{data.title}</p>
+          <p className="prod-price">{`$${data.price}`}</p>
+        </div>
+      </Link>
+      <ProductButtons data={data} />
+    </div>
+  );
+}
+
+export function CartProduct({ data }: ProductProps) {
+  const { setCartItems, cartItems } = AppContext();
+
+  function handleEmptyCart() {
+    setCartItems(cartItems.filter((item) => item.id !== data.id));
+  }
+
+  return (
+    <div className="cart-item">
+      <div className="left-wrapper">
+        <img src={data.image} alt={data.title} />
+        <p className="product-title">{data.title}</p>
+      </div>
+      <div className="right-wrapper">
+        <p className="prod-price">{`$${data.price}`}</p>
+        <ProductButtons data={data} />
+        <button className="remove-cart-item-btn" onClick={handleEmptyCart}>
+          Remove Item
+        </button>
+      </div>
+    </div>
   );
 }

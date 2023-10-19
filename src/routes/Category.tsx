@@ -1,16 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { Product } from "../components/Product";
 
-type CategoryProps = {
-  cartItems: CartItemProps[];
-  setCartItems: (arg: CartItemProps[]) => void;
-};
-
 type CategoryLoaderProps = {
   params: { name: string };
 };
 
-export function Category({ cartItems, setCartItems }: CategoryProps) {
+export function Category() {
   const categoryData = useLoaderData() as ProductData[];
   const categoryTitle = categoryData[0].category ?? "";
 
@@ -21,14 +16,7 @@ export function Category({ cartItems, setCartItems }: CategoryProps) {
       </header>
       <div className="category-page-wrapper store">
         <div className="items">
-          {categoryData?.map((item) => (
-            <Product
-              key={item.id}
-              data={item}
-              cartItems={cartItems}
-              setCartItems={setCartItems}
-            />
-          ))}
+          {categoryData?.map((item) => <Product key={item.id} data={item} />)}
         </div>
       </div>
     </>

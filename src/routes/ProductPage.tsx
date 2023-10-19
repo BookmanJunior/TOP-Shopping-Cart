@@ -6,11 +6,6 @@ type paramsProps = {
   params: ProductData;
 };
 
-type ProductPageProps = {
-  cartItems: CartItemProps[];
-  setCartItems: (arg: CartItemProps[]) => void;
-};
-
 export async function ProductLoader({
   params,
 }: paramsProps): Promise<ProductData> {
@@ -21,7 +16,7 @@ export async function ProductLoader({
   throw new Error();
 }
 
-export function ProductPage({ cartItems, setCartItems }: ProductPageProps) {
+export function ProductPage() {
   const product = useLoaderData() as ProductData;
 
   return (
@@ -37,11 +32,7 @@ export function ProductPage({ cartItems, setCartItems }: ProductPageProps) {
             <p className="prod-desc">{product.description}</p>
           </div>
           <p className="prod-price">${product.price}</p>
-          <ProductButtons
-            data={product}
-            cartItems={cartItems}
-            setCartItems={setCartItems}
-          />
+          <ProductButtons data={product} />
         </div>
       </div>
     </div>

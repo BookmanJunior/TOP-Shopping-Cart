@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
+import { AppContext } from "../App";
 import { CartProduct } from "../components/Product";
 import "../styles/cart.css";
 
-type CartProps = {
-  cartItems: CartItemProps[];
-  setCartItems: (arg: CartItemProps[]) => void;
-};
+export default function Cart() {
+  const { cartItems, setCartItems } = AppContext();
 
-export default function Cart({ cartItems, setCartItems }: CartProps) {
   const totalCost: number = cartItems.reduce((prev, curr): number => {
     return prev + parseFloat(curr.price) * curr.quantity;
   }, 0);
@@ -26,12 +24,7 @@ export default function Cart({ cartItems, setCartItems }: CartProps) {
           </button>
           <div className="cart-items">
             {cartItems.map((item) => (
-              <CartProduct
-                key={item.id}
-                data={item}
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-              />
+              <CartProduct key={item.id} data={item} />
             ))}
           </div>
           <p className="cart-total">{`Total: $${parseFloat(
