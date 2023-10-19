@@ -4,7 +4,7 @@ import { CartProduct } from "../components/Product";
 import "../styles/cart.css";
 
 export default function Cart() {
-  const { cartItems, setCartItems } = AppContext();
+  const { cartItems, setIsModalOpen } = AppContext();
 
   const totalCost: number = cartItems.reduce((prev, curr): number => {
     return prev + parseFloat(curr.price) * curr.quantity;
@@ -19,7 +19,10 @@ export default function Cart() {
         </div>
       ) : (
         <>
-          <button className="empty-cart-btn" onClick={() => setCartItems([])}>
+          <button
+            className="empty-cart-btn"
+            onClick={() => setIsModalOpen(true)}
+          >
             Empty Cart
           </button>
           <div className="cart-items">
