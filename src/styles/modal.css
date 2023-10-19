@@ -1,0 +1,44 @@
+dialog {
+  margin: auto;
+  border: 0;
+  border-radius: 8px;
+  padding: var(--gap-size);
+  max-width: 500px;
+}
+
+dialog > p,
+.modal-button-wrapper {
+  text-align: center;
+}
+
+.empty-cart-warning {
+  font-size: 1.1rem;
+}
+
+.modal-item-title,
+.empty-cart-warning {
+  font-weight: 700;
+}
+
+.modal-button-wrapper > button {
+  margin-block: var(--gap-size);
+  padding: 0.5em 2em;
+  outline-offset: 2px;
+}
+
+.modal-button-wrapper > button:first-child {
+  background-color: var(--accent-color);
+  outline-color: var(--accent-color);
+  color: var(--secondary-text-clr);
+  margin-inline: var(--gap-size);
+}
+
+.modal-button-wrapper > button:last-child {
+  background-color: var(--primary-bg);
+  outline-color: var(--primary-bg);
+}
+
+.modal-button-wrapper > button:hover {
+  outline-width: 1px;
+  outline-style: solid;
+}
