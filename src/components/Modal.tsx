@@ -2,10 +2,11 @@ import { useEffect, useRef } from "react";
 
 type ModalProps = {
   isModalOpen: boolean;
+  closeModal: () => void;
 };
 
-export default function Modal({ isModalOpen }: ModalProps) {
-  const modalRef = useRef<HTMLDialogElement>();
+export default function Modal({ isModalOpen, closeModal }: ModalProps) {
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -20,7 +21,7 @@ export default function Modal({ isModalOpen }: ModalProps) {
       <p>Are you sure you want to delete this item?</p>
       <div className="modal-button-wrapper">
         <button>Yes</button>
-        <button>No</button>
+        <button onClick={closeModal}>No</button>
       </div>
     </dialog>
   );
