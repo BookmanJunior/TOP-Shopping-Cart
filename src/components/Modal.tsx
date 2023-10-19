@@ -1,11 +1,19 @@
 import { useEffect, useRef } from "react";
+import "../styles/modal.css";
 
 type ModalProps = {
   isModalOpen: boolean;
   closeModal: () => void;
+  activeItem: ProductData | null;
+  handleDelete: () => void;
 };
 
-export default function Modal({ isModalOpen, closeModal }: ModalProps) {
+export default function Modal({
+  isModalOpen,
+  closeModal,
+  activeItem,
+  handleDelete,
+}: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -17,12 +25,24 @@ export default function Modal({ isModalOpen, closeModal }: ModalProps) {
   }, [isModalOpen]);
 
   return (
-    <dialog ref={modalRef}>
-      <p>Are you sure you want to delete this item?</p>
-      <div className="modal-button-wrapper">
-        <button>Yes</button>
-        <button onClick={closeModal}>No</button>
-      </div>
-    </dialog>
+    isModalOpen && (
+      <dialog ref={modalRef}>
+        {activeItem ? (
+          <p>
+            Are you sure you want to remove{" "}
+            <span className="modal-item-title">{activeItem.title}</span> from
+            cart?
+          </p>
+        ) : (
+          <p className="empty-cart-warning">
+            Are you sure you want to empty cart?
+          </p>
+        )}
+        <div className="modal-button-wrapper">
+          <button onClick={handleDelete}>Yes</button>
+          <button onClick={closeModal}>No</button>
+        </div>
+      </dialog>
+    )
   );
 }
