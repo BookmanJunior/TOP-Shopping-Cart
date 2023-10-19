@@ -6,7 +6,8 @@ type ProductProps = {
 };
 
 export function ProductButtons({ data }: ProductProps) {
-  const { cartItems, setCartItems } = AppContext();
+  const { cartItems, setCartItems, setIsModalOpen, setActiveItem } =
+    AppContext();
 
   const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
   const quantityOfProduct = cartItems.filter((item) => item.id === data.id)[0]
@@ -44,8 +45,10 @@ export function ProductButtons({ data }: ProductProps) {
       <button
         className="decrement"
         onClick={() => {
+          setActiveItem(data);
+
           if (lessThanOne) {
-            setCartItems(cartItems.filter((item) => item.id !== data.id));
+            setIsModalOpen(true);
             return;
           }
           handleDecrement(data.id);
