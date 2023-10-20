@@ -1,0 +1,67 @@
+.toast-list {
+  position: fixed;
+  max-height: var(--view-height);
+  right: 5px;
+  bottom: 0;
+  width: min(300px, 100%);
+  padding: 1em;
+  user-select: none;
+  transition: max-height 300ms ease-in-out;
+  z-index: 100;
+}
+
+.toast-notification {
+  min-height: 60px;
+  background: var(--primary-product-bg);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  margin: 0 auto 10px auto;
+  text-align: center;
+  animation: slideIn 300ms ease-in-out;
+
+  display: grid;
+}
+
+.toast-notification > p {
+  order: 1;
+}
+
+.toast-notification > * {
+  grid-area: 1 / 1 / 1 / 1;
+}
+
+.toast-notification > * {
+  place-self: center;
+}
+
+.toast-notification > button {
+  place-self: start end;
+  margin-right: 10px;
+}
+
+.toast-notification.animation-out {
+  animation: slideOut 300ms ease-in-out forwards;
+}
+
+.toast-notification > span {
+  font-weight: 700;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+    display: none;
+  }
+}
