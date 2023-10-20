@@ -141,8 +141,8 @@ input[type="checkbox"] {
 input[type="checkbox"] {
   appearance: none;
   border: 2px solid var(--accent-color);
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 
   display: grid;
   place-content: center;
@@ -150,23 +150,23 @@ input[type="checkbox"] {
 
 input[type="checkbox"]::after {
   content: "";
-  width: 14px;
+  width: 12px;
   aspect-ratio: 1;
   transform: scale(0);
-  transition: 100ms cubic-bezier(0.8, 0, 0.2, 1);
 
   transform-origin: bottom left;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 input[type="checkbox"]:checked::after {
-  background-color: var(--accent-color);
+  background-color: var(--secondary-text-clr);
   transform: scale(1);
 }
 
 input[type="checkbox"]:checked,
 input[type="checkbox"]::after {
-  border-color: var(--main-text-clr);
+  background-color: var(--accent-color);
+  transition: 100ms cubic-bezier(0.8, 0, 0.2, 1);
 }
 
 .add-to-cart-btn {
