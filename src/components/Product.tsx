@@ -6,7 +6,7 @@ type ProductProps = {
 };
 
 export function ProductButtons({ data }: ProductProps) {
-  const { cartItems, setCartItems, setIsModalOpen, setActiveItem } =
+  const { cartItems, setCartItems, setIsModalOpen, setActiveItem, showToast } =
     AppContext();
 
   const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
@@ -64,7 +64,10 @@ export function ProductButtons({ data }: ProductProps) {
   ) : (
     <button
       className="add-to-cart-btn"
-      onClick={() => handleCartAdd(data as CartItemProps)}
+      onClick={() => {
+        handleCartAdd(data as CartItemProps);
+        showToast(data, "add");
+      }}
     >
       Add to Cart
     </button>
