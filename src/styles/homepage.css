@@ -1,7 +1,10 @@
+header {
+  place-content: center;
+}
+
 .homepage-header-wrapper {
   display: grid;
 
-  margin-inline: auto;
   max-width: 1200px;
   background-color: #101010;
   height: var(--view-height);
@@ -33,7 +36,7 @@ picture {
 }
 
 .product-name {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 10vw, 3.5rem);
   font-weight: 700;
 }
 
@@ -124,6 +127,6 @@ picture > img {
 
 @media screen and (max-width: 500px) {
   .homepage-header-wrapper {
-    height: 800px;
+    height: auto;
   }
 }
