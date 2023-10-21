@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Outlet, useOutletContext, ScrollRestoration } from "react-router-dom";
 import Nav from "./components/Nav";
 import Modal from "./components/Modal";
 import ToastList from "./components/toast";
@@ -45,6 +45,7 @@ export default function App() {
 
   return (
     <>
+      <ScrollRestoration />
       <Nav cartItemsLength={cartItems.length} />
       <Modal
         isModalOpen={isModalOpen}
