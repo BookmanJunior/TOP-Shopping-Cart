@@ -1,8 +1,8 @@
 import Header from "../components/Header";
-import ElectronicsImg from "../assets/electronics.jpeg";
-import JewelryImg from "../assets/jewelry.avif";
-import MClothingImg from "../assets/men's clothing.jpg";
-import WClothingImg from "../assets/women's clothing.avif";
+import ElectronicsImg from "../assets/electronics.webp";
+import JewelryImg from "../assets/jewelry.webp";
+import MClothingImg from "../assets/men's clothing.webp";
+import WClothingImg from "../assets/women's clothing.webp";
 import FeaturedCard from "../components/FeaturedCard";
 import "../styles/homepage.css";
 
