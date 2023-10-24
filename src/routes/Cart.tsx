@@ -7,7 +7,7 @@ export default function Cart() {
   const { cartItems, setIsModalOpen } = AppContext();
 
   const totalCost: number = cartItems.reduce((prev, curr): number => {
-    return prev + parseFloat(curr.price) * curr.quantity;
+    return Math.round((prev + curr.price * curr.quantity) * 100) / 100;
   }, 0);
 
   return (
@@ -30,9 +30,7 @@ export default function Cart() {
               <CartProduct key={item.id} data={item} />
             ))}
           </div>
-          <p className="cart-total">{`Total: $${parseFloat(
-            totalCost.toFixed(2)
-          )}`}</p>
+          <p className="cart-total">{`Total: $${totalCost}`}</p>
         </>
       )}
     </div>
