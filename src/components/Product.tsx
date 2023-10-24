@@ -81,7 +81,7 @@ export function Product({ data }: ProductProps) {
         <img src={data.image} alt={data.title} />
         <div className="prod-details">
           <p className="product-title">{data.title}</p>
-          <p className="prod-price">{`$${data.price}`}</p>
+          <p className="prod-price">{`$${formatPrice(data.price)}`}</p>
         </div>
       </Link>
       <ProductButtons data={data} />
@@ -90,10 +90,11 @@ export function Product({ data }: ProductProps) {
 }
 
 export function CartProduct({ data }: ProductProps) {
-  const { setCartItems, cartItems } = AppContext();
+  const { setCartItems, cartItems, showToast } = AppContext();
 
   function handleEmptyCart() {
     setCartItems(cartItems.filter((item) => item.id !== data.id));
+    showToast(data, "remove");
   }
 
   return (
@@ -103,7 +104,7 @@ export function CartProduct({ data }: ProductProps) {
         <p className="product-title">{data.title}</p>
       </div>
       <div className="right-wrapper">
-        <p className="prod-price">{`$${data.price}`}</p>
+        <p className="prod-price">{`$${formatPrice(data.price)}`}</p>
         <ProductButtons data={data} />
         <button className="remove-cart-item-btn" onClick={handleEmptyCart}>
           Remove Item
@@ -111,4 +112,8 @@ export function CartProduct({ data }: ProductProps) {
       </div>
     </div>
   );
+}
+
+function formatPrice(num: number): number | string {
+  return num % 1 === 0 ? num : num.toFixed(2);
 }
