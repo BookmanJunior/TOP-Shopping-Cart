@@ -38,7 +38,8 @@
 }
 
 .cart-item .right-wrapper {
-  gap: 4em;
+  width: min(400px, 100%);
+  justify-content: space-between;
 }
 
 .cart-item .left-wrapper {
