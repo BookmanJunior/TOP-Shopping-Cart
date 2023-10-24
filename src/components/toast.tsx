@@ -7,12 +7,8 @@ type ToastProps = {
 };
 
 type ToastListProps = {
-  removeToast: (id: number) => void;
-  data: {
-    id: number;
-    title: string;
-    type: string;
-  }[];
+  removeToast: (id: ToastId) => void;
+  toasts: ToastDataProps[];
 };
 
 function Toast({ type, handleAnimationOut }: ToastProps) {
@@ -32,6 +28,8 @@ function Toast({ type, handleAnimationOut }: ToastProps) {
     message = `Added item to cart`;
   } else if (type === "remove") {
     message = `Removed item from cart`;
+  } else if (type === "empty") {
+    message = `Emptied cart`;
   }
 
   return (
@@ -51,13 +49,13 @@ function Toast({ type, handleAnimationOut }: ToastProps) {
   );
 }
 
-export default function ToastList({ data, removeToast }: ToastListProps) {
+export default function ToastList({ toasts, removeToast }: ToastListProps) {
   return (
     <div className="toast-list">
-      {data &&
-        data.map((toast) => (
+      {toasts &&
+        toasts.map((toast) => (
           <Toast
-            key={`${toast.id}+${toast.type}`}
+            key={`${toast.id}`}
             type={toast.type}
             handleAnimationOut={(e: AnimationEvent) => {
               if (e.animationName === "slideOut") {

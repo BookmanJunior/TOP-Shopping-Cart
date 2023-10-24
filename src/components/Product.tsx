@@ -66,7 +66,7 @@ export function ProductButtons({ data }: ProductProps) {
       className="add-to-cart-btn"
       onClick={() => {
         handleCartAdd(data as CartItemProps);
-        showToast(data, "add");
+        showToast(data.id, "add");
       }}
     >
       Add to Cart
@@ -94,7 +94,7 @@ export function CartProduct({ data }: ProductProps) {
 
   function handleEmptyCart() {
     setCartItems(cartItems.filter((item) => item.id !== data.id));
-    showToast(data, "remove");
+    showToast(data.id, "remove");
   }
 
   return (
