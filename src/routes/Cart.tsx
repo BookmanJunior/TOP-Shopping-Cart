@@ -30,7 +30,9 @@ export default function Cart() {
               <CartProduct key={item.id} data={item} />
             ))}
           </div>
-          <p className="cart-total">{`Total: $${totalCost}`}</p>
+          <p className="cart-total">{`Total: $${
+            totalCost % 1 === 0 ? totalCost : totalCost.toFixed(2)
+          }`}</p>
         </>
       )}
     </div>
