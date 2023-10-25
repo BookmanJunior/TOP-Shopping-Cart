@@ -41,7 +41,7 @@ export default function App() {
 
   function showToast(id: ToastId, type: ToastType) {
     const newToast = {
-      id,
+      id: id + type,
       type,
     };
 
