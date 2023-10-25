@@ -55,7 +55,7 @@ export default function ToastList({ toasts, removeToast }: ToastListProps) {
       {toasts &&
         toasts.map((toast) => (
           <Toast
-            key={`${toast.id}`}
+            key={`${toast.id}+${toast.type}`}
             type={toast.type}
             handleAnimationOut={(e: AnimationEvent) => {
               if (e.animationName === "slideOut") {
