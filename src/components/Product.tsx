@@ -77,7 +77,7 @@ export function ProductButtons({ data }: ProductProps) {
 export function Product({ data }: ProductProps) {
   return (
     <div className="item">
-      <Link to={`./${data.id}`}>
+      <Link to={`${data.id}`}>
         <img src={data.image} alt={data.title} />
         <div className="prod-details">
           <p className="product-title">{data.title}</p>

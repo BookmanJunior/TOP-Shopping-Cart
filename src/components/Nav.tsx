@@ -14,7 +14,7 @@ export default function Nav({ cartItemsLength }: NavProps) {
             <Link to="/">Home</Link>
           </li>
           <li className="nav-link">
-            <Link to="../store">Store</Link>
+            <Link to="store">Store</Link>
           </li>
           <li className="nav-link">
             <Link
