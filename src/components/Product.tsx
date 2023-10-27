@@ -19,7 +19,7 @@ export function ProductButtons({ data }: ProductProps) {
       <button className="decrement" onClick={handleDecrement}>
         -
       </button>
-      <div>{quantityOfProduct}</div>
+      <span>{quantityOfProduct}</span>
       <button className="increment" onClick={handleIncrement}>
         +
       </button>
