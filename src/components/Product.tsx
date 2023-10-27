@@ -9,19 +9,36 @@ export function ProductButtons({ data }: ProductProps) {
   const { cartItems, setCartItems, setIsModalOpen, setActiveItem, showToast } =
     AppContext();
 
-  const isProductInCart = cartItems.filter((item) => item.id === data.id)[0];
-  const quantityOfProduct = cartItems.filter((item) => item.id === data.id)[0]
+  const isProductInCart = cartItems?.filter((item) => item.id === data.id)[0];
+  const quantityOfProduct = cartItems?.filter((item) => item.id === data.id)[0]
     ?.quantity;
   const lessThanOne = quantityOfProduct <= 1;
 
-  function handleCartAdd(item: CartItemProps) {
-    setCartItems([...cartItems, { ...item, quantity: 1 }]);
+  return isProductInCart ? (
+    <div className="quant-wrapper">
+      <button className="decrement" onClick={handleDecrement}>
+        -
+      </button>
+      <div>{quantityOfProduct}</div>
+      <button className="increment" onClick={handleIncrement}>
+        +
+      </button>
+    </div>
+  ) : (
+    <button className="add-to-cart-btn" onClick={handleCartAdd}>
+      Add to Cart
+    </button>
+  );
+
+  function handleCartAdd() {
+    setCartItems([...cartItems, { ...data, quantity: 1 }]);
+    showToast(data.id, "add");
   }
 
-  function handleIncrement(item: number) {
+  function handleIncrement() {
     setCartItems(
       cartItems.map((cartItem) => {
-        if (cartItem.id === item) {
+        if (cartItem.id === data.id) {
           return { ...cartItem, quantity: cartItem.quantity + 1 };
         }
         return cartItem;
@@ -29,49 +46,22 @@ export function ProductButtons({ data }: ProductProps) {
     );
   }
 
-  function handleDecrement(item: number) {
+  function handleDecrement() {
+    if (lessThanOne) {
+      setActiveItem(data);
+      setIsModalOpen(true);
+      return;
+    }
+
     setCartItems(
       cartItems.map((cartItem) => {
-        if (cartItem.id === item) {
+        if (cartItem.id === data.id) {
           return { ...cartItem, quantity: cartItem.quantity - 1 };
         }
         return cartItem;
       })
     );
   }
-
-  return isProductInCart ? (
-    <div className="quant-wrapper">
-      <button
-        className="decrement"
-        onClick={() => {
-          setActiveItem(data);
-
-          if (lessThanOne) {
-            setIsModalOpen(true);
-            return;
-          }
-          handleDecrement(data.id);
-        }}
-      >
-        -
-      </button>
-      <div>{quantityOfProduct}</div>
-      <button className="increment" onClick={() => handleIncrement(data.id)}>
-        +
-      </button>
-    </div>
-  ) : (
-    <button
-      className="add-to-cart-btn"
-      onClick={() => {
-        handleCartAdd(data as CartItemProps);
-        showToast(data.id, "add");
-      }}
-    >
-      Add to Cart
-    </button>
-  );
 }
 
 export function Product({ data }: ProductProps) {
