@@ -1,25 +1,7 @@
+import { TestRouter } from "./testRouter";
 import { Product } from "../components/Product";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "../App";
-
-const Router = ({ children }) => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <App />,
-      children: [
-        {
-          index: true,
-          element: children,
-        },
-      ],
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
-};
 
 describe("Product component", () => {
   const mockData = {
@@ -34,9 +16,9 @@ describe("Product component", () => {
 
   it("renders product", () => {
     const { container } = render(
-      <Router>
+      <TestRouter>
         <Product data={mockData} />
-      </Router>
+      </TestRouter>
     );
     const price = container.querySelector(".product-title");
     expect(price.textContent).toMatch(
@@ -46,9 +28,9 @@ describe("Product component", () => {
 
   it("adds product to cart", async () => {
     render(
-      <Router>
+      <TestRouter>
         <Product data={mockData} />
-      </Router>
+      </TestRouter>
     );
 
     const addToCartButton = screen.getByRole("button", { name: "Add to Cart" });
@@ -65,9 +47,9 @@ describe("Product component", () => {
 
   it("increments product quantity", async () => {
     render(
-      <Router>
+      <TestRouter>
         <Product data={mockData} />
-      </Router>
+      </TestRouter>
     );
 
     const addToCartButton = screen.getByRole("button", { name: "Add to Cart" });
@@ -83,9 +65,9 @@ describe("Product component", () => {
 
   it("decrements product quantity", async () => {
     render(
-      <Router>
+      <TestRouter>
         <Product data={mockData} />
-      </Router>
+      </TestRouter>
     );
 
     const addToCartButton = screen.getByRole("button", { name: "Add to Cart" });
