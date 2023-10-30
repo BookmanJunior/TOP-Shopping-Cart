@@ -2,23 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../components/Product";
 import CategoriesAside from "../components/CategoriesAside";
-import FetchProducts from "../components/FetchProducts";
-import { AppContext } from "../App";
+import FetchStoreData from "../components/FetchStoreData";
 import "../styles/store.css";
 
-// type StoreProps = {
-//   products: ProductData[];
-//   setProducts: (item: ProductData[]) => void;
-// };
-
 export default function Store() {
-  const { products, setProducts } = AppContext();
-  const [categories, setCategories] = useState<string[]>([]);
+  const { isLoading, error, products, categories } = FetchStoreData();
   const [activeCategory, setActiveCategory] = useState<string[]>([]);
-  const { isLoading, error } = FetchProducts({
-    setProducts,
-    setCategories,
-  });
 
   const productsToDisplay: ProductData[] = products?.filter((item) => {
     if (!activeCategory.length) return products;
@@ -44,19 +33,17 @@ export default function Store() {
   }
 
   return (
-    <>
-      <div className="store">
-        <CategoriesAside
-          categories={categories}
-          handleActiveCategory={handleSetActiveCategory}
-        />
-        <div className="items">
-          {productsToDisplay?.map((item) => (
-            <Product key={item.id} data={item} />
-          ))}
-        </div>
+    <div className="store">
+      <CategoriesAside
+        categories={categories}
+        handleActiveCategory={handleSetActiveCategory}
+      />
+      <div className="items">
+        {productsToDisplay?.map((item) => (
+          <Product key={item.id} data={item} />
+        ))}
       </div>
-    </>
+    </div>
   );
 
   function handleSetActiveCategory(item: string) {
