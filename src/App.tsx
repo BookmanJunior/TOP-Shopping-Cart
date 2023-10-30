@@ -5,7 +5,6 @@ import Modal from "./components/Modal";
 import ToastList from "./components/toast";
 
 export default function App() {
-  const [products, setProducts] = useState<ProductData[]>([] as ProductData[]);
   const [cartItems, setCartItems] = useState<CartItemProps[]>([]);
   const [activeItem, setActiveItem] = useState<ProductData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,8 +28,6 @@ export default function App() {
         context={{
           cartItems,
           setCartItems,
-          products,
-          setProducts,
           setIsModalOpen,
           setActiveItem,
           showToast,
@@ -68,8 +65,6 @@ export default function App() {
 }
 
 type ContextType = {
-  products: ProductData[];
-  setProducts: (arg0: ProductData[]) => void;
   cartItems: CartItemProps[];
   setCartItems: (arg0: ProductData[]) => void;
   setIsModalOpen: (arg0: boolean) => void;
