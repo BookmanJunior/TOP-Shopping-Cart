@@ -15,11 +15,9 @@ export default function FetchStoreData() {
     });
 
     try {
-      const result = (await Promise.all([cats, prods])).map((res) => {
-        if (res.ok) return res.json();
-
-        throw new Error();
-      });
+      const result = (await Promise.all([cats, prods])).map((res) =>
+        res.json()
+      );
       const [categoriesResult, productsResult] = await Promise.all(result);
       setCategories(categoriesResult);
       setProducts(productsResult);
