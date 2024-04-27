@@ -1,14 +1,21 @@
 import { useState } from "react";
-import { Outlet, useOutletContext, ScrollRestoration } from "react-router-dom";
+import {
+  Outlet,
+  useOutletContext,
+  ScrollRestoration,
+  useNavigation,
+} from "react-router-dom";
 import Nav from "./components/Nav";
 import Modal from "./components/Modal";
 import ToastList from "./components/toast";
+import Spinner from "./components/Spinner";
 
 export default function App() {
   const [cartItems, setCartItems] = useState<CartItemProps[]>([]);
   const [activeItem, setActiveItem] = useState<ProductData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastDataProps[]>([]);
+  const { state } = useNavigation();
 
   return (
     <>
@@ -24,15 +31,19 @@ export default function App() {
         activeItem={activeItem}
       />
       <ToastList toasts={toasts} removeToast={removeToast} />
-      <Outlet
-        context={{
-          cartItems,
-          setCartItems,
-          setIsModalOpen,
-          setActiveItem,
-          showToast,
-        }}
-      />
+      {state === "loading" ? (
+        <Spinner />
+      ) : (
+        <Outlet
+          context={{
+            cartItems,
+            setCartItems,
+            setIsModalOpen,
+            setActiveItem,
+            showToast,
+          }}
+        />
+      )}
     </>
   );
 
