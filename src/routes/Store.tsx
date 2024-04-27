@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Product } from "../components/Product";
 import CategoriesAside from "../components/CategoriesAside";
 import FetchStoreData from "../components/FetchStoreData";
+import Spinner from "../components/Spinner";
 import "../styles/store.css";
 
 export default function Store() {
@@ -16,11 +17,7 @@ export default function Store() {
   });
 
   if (isLoading) {
-    return (
-      <div className="loading-screen">
-        <div className="spinner"></div>
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (error) {
