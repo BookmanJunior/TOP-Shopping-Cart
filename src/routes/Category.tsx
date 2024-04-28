@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { Product } from "../components/Product";
+import ProductPreview from "../components/product/ProductPreview";
 
 type CategoryLoaderProps = {
   params: { name: string };
@@ -16,7 +16,9 @@ export function Category() {
       </header>
       <div className="category-page-wrapper store">
         <div className="items">
-          {categoryData?.map((item) => <Product key={item.id} data={item} />)}
+          {categoryData?.map((item) => (
+            <ProductPreview key={item.id} data={item} />
+          ))}
         </div>
       </div>
     </>

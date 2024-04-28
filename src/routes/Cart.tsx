@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AppContext } from "../App";
-import { CartProduct } from "../components/Product";
+import CartProduct from "../components/product/CartProduct";
 import "../styles/cart.css";
 
 export default function Cart() {

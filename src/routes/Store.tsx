@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Product } from "../components/Product";
+import ProductPreview from "../components/product/ProductPreview";
 import CategoriesAside from "../components/CategoriesAside";
 import FetchStoreData from "../components/FetchStoreData";
 import Spinner from "../components/Spinner";
@@ -37,7 +37,7 @@ export default function Store() {
       />
       <div className="items">
         {productsToDisplay?.map((item) => (
-          <Product key={item.id} data={item} />
+          <ProductPreview key={item.id} data={item} />
         ))}
       </div>
     </div>
