@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AppContext } from "../App";
 import CartProduct from "../components/product/CartProduct";
+import formatPrice from "../helpers/PriceFormatter";
 import "../styles/cart.css";
 
 export default function Cart() {
@@ -30,9 +31,7 @@ export default function Cart() {
               <CartProduct key={item.id} data={item} />
             ))}
           </div>
-          <p className="cart-total">{`Total: $${
-            totalCost % 1 === 0 ? totalCost : totalCost.toFixed(2)
-          }`}</p>
+          <p className="cart-total">{`Total: $${formatPrice(totalCost)}`}</p>
         </>
       )}
     </div>
