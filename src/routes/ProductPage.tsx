@@ -1,6 +1,5 @@
 import { useLoaderData } from "react-router-dom";
 import ProductButtons from "../components/product/ProductButtons";
-import "../styles/productPage.css";
 
 type paramsProps = {
   params: ProductData;
@@ -20,18 +19,22 @@ export function ProductPage() {
   const product = useLoaderData() as ProductData;
 
   return (
-    <div className="product-page">
-      <div className="product-wrapper">
-        <div className="product-image">
-          <img src={product.image} alt={product.title} />
+    <div className="flex justify-center items-center h-view-height">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] justify-items-start items-center max-w-[800px] gap-4 p-4 bg-primary-product-bg radius-[8px] rounded-[8px]">
+        <div className="w-[min(300px,100%)] place-self-center">
+          <img
+            className="w-full aspect-square object-contain"
+            src={product.image}
+            alt={product.title}
+          />
         </div>
-        <div className="product-details">
-          <p className="prod-title">{product.title}</p>
-          <div className="product-description-wrapper">
-            <p>Product Description</p>
-            <p className="prod-desc">{product.description}</p>
+        <div className="grid gap-4">
+          <p className=" text-[2rem] font-bold">{product.title}</p>
+          <div>
+            <p className="border-b-2 mb-3">Product Description</p>
+            <p>{product.description}</p>
           </div>
-          <p className="prod-price">${product.price}</p>
+          <p className="font-bold">${product.price}</p>
           <ProductButtons data={product} />
         </div>
       </div>
