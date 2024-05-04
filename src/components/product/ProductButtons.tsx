@@ -10,17 +10,16 @@ export default function ProductButtons({ data }: { data: ProductData }) {
   const lessThanOne = quantityOfProduct <= 1;
 
   return isProductInCart ? (
-    <div className="quant-wrapper">
-      <button className="decrement" onClick={handleDecrement}>
-        -
-      </button>
+    <div className="flex justify-center gap-4 py-[0.5rem] px-[1rem] bg-primary-bg">
+      <button onClick={handleDecrement}>-</button>
       <span>{quantityOfProduct}</span>
-      <button className="increment" onClick={handleIncrement}>
-        +
-      </button>
+      <button onClick={handleIncrement}>+</button>
     </div>
   ) : (
-    <button className="add-to-cart-btn" onClick={handleCartAdd}>
+    <button
+      className="bg-accent-clr text-secondary-text-clr hover:outline hover:outline-accent-clr hover:outline-2 hover:outline-offset-2 py-[0.5rem] px-[1rem]"
+      onClick={handleCartAdd}
+    >
       Add to Cart
     </button>
   );
