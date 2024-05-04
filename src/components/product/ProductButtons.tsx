@@ -21,9 +21,13 @@ export default function ProductButtons({
         className ? className : ""
       }`}
     >
-      <button onClick={handleDecrement}>-</button>
+      <button className="hover:text-accent-clr" onClick={handleDecrement}>
+        -
+      </button>
       <span>{quantityOfProduct}</span>
-      <button onClick={handleIncrement}>+</button>
+      <button className="hover:text-accent-clr" onClick={handleIncrement}>
+        +
+      </button>
     </div>
   ) : (
     <button
