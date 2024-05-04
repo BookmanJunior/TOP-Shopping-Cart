@@ -6,12 +6,16 @@ export default function CartProduct({ data }: { data: ProductData }) {
   const { setCartItems, cartItems, showToast } = AppContext();
 
   return (
-    <div className="cart-item">
-      <div className="left-wrapper">
-        <img src={data.image} alt={data.title} />
+    <div className="flex max-h-[300px] justify-between flex-wrap bg-primary-product-bg border-b-primary-bg border-b-2 p-4">
+      <div className="flex items-center">
+        <img
+          src={data.image}
+          alt={data.title}
+          className="w-[100px] aspect-square object-contain"
+        />
         <p className="product-title">{data.title}</p>
       </div>
-      <div className="right-wrapper">
+      <div className="flex items-center gap-4">
         <FormattedPrice price={data.price} />
         <ProductButtons data={data} />
         <button className="remove-cart-item-btn" onClick={handleEmptyCart}>

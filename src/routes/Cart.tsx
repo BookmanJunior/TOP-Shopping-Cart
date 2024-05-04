@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../App";
 import CartProduct from "../components/product/CartProduct";
 import formatPrice from "../helpers/PriceFormatter";
-import "../styles/cart.css";
 
 export default function Cart() {
   const { cartItems, setIsModalOpen } = AppContext();
@@ -12,26 +11,23 @@ export default function Cart() {
   }, 0);
 
   return (
-    <div className="cart">
+    <div className="max-w-[1200px] mx-auto p-4">
       {!cartItems.length ? (
-        <div className="empty-cart">
+        <div className=" bg-primary-product-bg h-[150px] rounded-[8px] grid place-content-center text-center">
           Your Cart is Empty.
-          <Link to="../store">Browse Shop</Link>
+          <Link to="/store" className="bg-accent-clr text-white p-2 mt-2">
+            Browse Shop
+          </Link>
         </div>
       ) : (
         <>
-          <button
-            className="empty-cart-btn"
-            onClick={() => setIsModalOpen(true)}
-          >
-            Empty Cart
-          </button>
-          <div className="cart-items">
+          <button onClick={() => setIsModalOpen(true)}>Empty Cart</button>
+          <div className="my-2">
             {cartItems.map((item) => (
               <CartProduct key={item.id} data={item} />
             ))}
           </div>
-          <p className="cart-total">{`Total: $${formatPrice(totalCost)}`}</p>
+          <p className="font-bold">{`Total: $${formatPrice(totalCost)}`}</p>
         </>
       )}
     </div>

@@ -4,7 +4,6 @@ import ProductPreview from "../components/product/ProductPreview";
 import CategoriesAside from "../components/CategoriesAside";
 import FetchStoreData from "../components/FetchStoreData";
 import Spinner from "../components/Spinner";
-import "../styles/store.css";
 
 export default function Store() {
   const { isLoading, error, products, categories } = FetchStoreData();
@@ -30,12 +29,12 @@ export default function Store() {
   }
 
   return (
-    <div className="store">
+    <div className="flex flex-wrap gap-4 max-w-[1200px] p-4 mx-auto">
       <CategoriesAside
         categories={categories}
         handleActiveCategory={handleSetActiveCategory}
       />
-      <div className="items">
+      <div className="flex-1 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4">
         {productsToDisplay?.map((item) => (
           <ProductPreview key={item.id} data={item} />
         ))}

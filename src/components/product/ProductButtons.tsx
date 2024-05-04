@@ -1,6 +1,12 @@
 import { AppContext } from "../../App";
 
-export default function ProductButtons({ data }: { data: ProductData }) {
+export default function ProductButtons({
+  data,
+  className,
+}: {
+  data: ProductData;
+  className?: string;
+}) {
   const { cartItems, setCartItems, setIsModalOpen, setActiveItem, showToast } =
     AppContext();
 
@@ -10,14 +16,18 @@ export default function ProductButtons({ data }: { data: ProductData }) {
   const lessThanOne = quantityOfProduct <= 1;
 
   return isProductInCart ? (
-    <div className="flex justify-center gap-4 py-[0.5rem] px-[1rem] bg-primary-bg">
+    <div
+      className={`flex justify-center gap-4 py-[0.5rem] px-[1rem] bg-primary-bg ${
+        className ? className : ""
+      }`}
+    >
       <button onClick={handleDecrement}>-</button>
       <span>{quantityOfProduct}</span>
       <button onClick={handleIncrement}>+</button>
     </div>
   ) : (
     <button
-      className="bg-accent-clr text-secondary-text-clr hover:outline hover:outline-accent-clr hover:outline-2 hover:outline-offset-2 py-[0.5rem] px-[1rem]"
+      className={`bg-accent-clr text-secondary-text-clr hover:outline hover:outline-accent-clr hover:outline-2 hover:outline-offset-2 py-[0.5rem] px-[1rem] ${className}`}
       onClick={handleCartAdd}
     >
       Add to Cart
