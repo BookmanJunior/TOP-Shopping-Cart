@@ -20,7 +20,7 @@ export default function CartProduct({ data }: { data: ProductData }) {
         <ProductButtons data={data} />
         <button
           className="bg-primary-bg p-2 hover:outline hover:outline-2 hover:outline-primary-bg hover:outline-offset-2"
-          onClick={handleEmptyCart}
+          onClick={handleRemoveItem}
         >
           Remove Item
         </button>
@@ -28,7 +28,7 @@ export default function CartProduct({ data }: { data: ProductData }) {
     </div>
   );
 
-  function handleEmptyCart() {
+  function handleRemoveItem() {
     setCartItems(cartItems.filter((item) => item.id !== data.id));
     showToast(data.id, "remove");
   }
