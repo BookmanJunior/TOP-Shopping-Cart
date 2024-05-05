@@ -11,7 +11,7 @@ export function Category() {
 
   return (
     <main>
-      <header className="text-[clamp(2rem,0.5rem+1.8vw,3rem)] text-center font-bold uppercase h-44 tracking-wider">
+      <header className="grid place-content-center text-[clamp(2rem,0.5rem+1.8vw,3rem)] text-center font-bold uppercase h-44 tracking-wider">
         <h1>{categoryTitle}</h1>
       </header>
       <div className="max-w-[1200px] mx-auto py-4">

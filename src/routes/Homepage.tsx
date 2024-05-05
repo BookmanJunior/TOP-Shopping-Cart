@@ -4,15 +4,17 @@ import JewelryImg from "../assets/jewelry.webp";
 import MClothingImg from "../assets/men's clothing.webp";
 import WClothingImg from "../assets/women's clothing.webp";
 import FeaturedCard from "../components/FeaturedCard";
-import "../styles/homepage.css";
+// import "../styles/homepage.css";
 
 export default function Homepage() {
   return (
     <>
       <Header />
-      <section className="featured-categories-wrapper">
-        <p className="section-title">Categories</p>
-        <div className="featured-categories">
+      <section className="max-w-[1200px] mx-auto py-4">
+        <p className="text-center text-[clamp(2rem,0.5rem+1.8vw,3rem)] font-bold uppercase my-4 tracking-[3px]">
+          Categories
+        </p>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4 justify-center">
           <FeaturedCard title={"electronics"} imageElement={ElectronicsImg} />
           <FeaturedCard title={"jewelery"} imageElement={JewelryImg} />
           <FeaturedCard title={"men's clothing"} imageElement={MClothingImg} />
