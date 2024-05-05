@@ -10,6 +10,7 @@ export default {
         "primary-product-bg": "#ffffff",
         "main-text-clr": "#000000",
         "secondary-text-clr": "#ffffff",
+        "dark-gray": "#fafafa80",
       },
       spacing: {
         "nav-height": "4rem",
