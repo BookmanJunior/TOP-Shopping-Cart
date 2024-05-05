@@ -8,7 +8,7 @@ export default function CategoriesAside({
   handleActiveCategory,
 }: CategoriesAsideProps) {
   return (
-    <aside className="categories">
+    <aside className="max-[600px]:w-full">
       <div className="flex flex-col flex-wrap gap-4 p-4 rounded-[8px] sticky top-[80px] bg-primary-product-bg">
         <span className="font-bold border-b-[2px] border-solid border-primary-bg uppercase pb-1">
           Categories
