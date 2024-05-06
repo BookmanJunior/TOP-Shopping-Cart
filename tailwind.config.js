@@ -1,3 +1,5 @@
+import { transform } from "typescript";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -19,6 +21,21 @@ export default {
       boxShadow: {
         "outline-box-accent": "0 0 0 2px #ffffff, 0 0 0 4px #d87d4a",
         "outline-box-gray": "0 0 0 2px #ffffff, 0 0 0 4px #f2f2f5",
+        "light-dark": "0 2px 2px rgba(0, 0, 0, 0.2);",
+      },
+      keyframes: {
+        slideIn: {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        slideOut: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translate(100%)", opacity: "0" },
+        },
+      },
+      animation: {
+        slideIn: "slideIn 300ms ease-in-out forwards",
+        slideOut: "slideOut 300ms ease-in-out forwards",
       },
     },
   },
