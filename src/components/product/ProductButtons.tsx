@@ -31,7 +31,7 @@ export default function ProductButtons({
     </div>
   ) : (
     <button
-      className={`bg-accent-clr text-secondary-text-clr hover:outline hover:outline-accent-clr hover:outline-2 hover:outline-offset-2 py-[0.5rem] px-[1rem] ${className}`}
+      className={`bg-accent-clr text-secondary-text-clr hover:shadow-outline-box-accent transition-[box-shadow] py-[0.5rem] px-[1rem] ${className}`}
       onClick={handleCartAdd}
     >
       Add to Cart

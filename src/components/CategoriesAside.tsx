@@ -16,10 +16,10 @@ export default function CategoriesAside({
         {categories.map((item) => (
           <label
             key={item}
-            className="flex items-center uppercase cursor-pointer"
+            className="flex items-center uppercase cursor-pointer select-none"
           >
             <input
-              className="mr-1 cursor-pointer border-[2px] border-solid w-[18px] aspect-square accent-accent-clr"
+              className="mr-1 cursor-pointer checkmark"
               type="checkbox"
               name="category"
               id={item}

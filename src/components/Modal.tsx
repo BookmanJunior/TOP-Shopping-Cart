@@ -36,13 +36,13 @@ export default function Modal({
         )}
         <div className="text-center p-[1rem]">
           <button
-            className="py-[0.5rem] px-[2rem] bg-accent-clr text-secondary-text-clr mr-[1rem] hover:outline-2 hover:outline-accent-clr hover:outline-offset-2 hover:outline"
+            className="py-[0.5rem] px-[2rem] bg-accent-clr text-secondary-text-clr mr-[1rem] hover:shadow-outline-box-accent transition-[box-shadow]"
             onClick={handleDelete}
           >
             Yes
           </button>
           <button
-            className="py-[0.5rem] px-[2rem] bg-primary-bg hover:outline-2 hover:outline-primary-bg hover:outline-offset-2 hover:outline"
+            className="py-[0.5rem] px-[2rem] bg-primary-bg hover:shadow-outline-box-gray transition-[box-shadow]"
             onClick={closeModal}
           >
             No
