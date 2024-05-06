@@ -5,6 +5,25 @@ type ToastProps = {
   handleAnimationOut: (e: any) => void;
 };
 
+export default function ToastList({ toasts, removeToast }: ToastListProps) {
+  return (
+    <div className="fixed max-h-view-height right-[5px] bottom-0 w-[min(300px,100%)] p-4 select-none transition-[max-height] z-[100]">
+      {toasts &&
+        toasts.map((toast) => (
+          <Toast
+            key={`${toast.id}+${toast.type}`}
+            type={toast.type}
+            handleAnimationOut={(e: AnimationEvent) => {
+              if (e.animationName === "slideOut") {
+                removeToast(toast.id);
+              }
+            }}
+          />
+        ))}
+    </div>
+  );
+}
+
 type ToastListProps = {
   removeToast: (id: ToastId) => void;
   toasts: ToastDataProps[];
@@ -47,25 +66,6 @@ function Toast({ type, handleAnimationOut }: ToastProps) {
       >
         x
       </button>
-    </div>
-  );
-}
-
-export default function ToastList({ toasts, removeToast }: ToastListProps) {
-  return (
-    <div className="fixed max-h-view-height right-[5px] bottom-0 w-[min(300px,100%)] p-4 select-none transition-[max-height] z-[100]">
-      {toasts &&
-        toasts.map((toast) => (
-          <Toast
-            key={`${toast.id}+${toast.type}`}
-            type={toast.type}
-            handleAnimationOut={(e: AnimationEvent) => {
-              if (e.animationName === "slideOut") {
-                removeToast(toast.id);
-              }
-            }}
-          />
-        ))}
     </div>
   );
 }
