@@ -6,7 +6,3 @@ type ProductData = {
   category: string;
   image: string;
 };
-
-type CartItemProps = {
-  quantity: number;
-} & ProductData;
