@@ -16,6 +16,10 @@ export default {
         "nav-height": "4rem",
         "view-height": `calc(100vh - 4rem)`,
       },
+      boxShadow: {
+        "outline-box-accent": "0 0 0 2px #ffffff, 0 0 0 4px #d87d4a",
+        "outline-box-gray": "0 0 0 2px #ffffff, 0 0 0 4px #f2f2f5",
+      },
     },
   },
   plugins: ["prettier-plugin-tailwindcss"],
