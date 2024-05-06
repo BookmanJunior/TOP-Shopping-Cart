@@ -20,8 +20,8 @@ export function ProductPage() {
 
   return (
     <div className="flex justify-center items-center min-h-view-height">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] justify-items-start items-center max-w-[800px] gap-4 p-4 bg-primary-product-bg radius-[8px] rounded-[8px]">
-        <div className="w-[min(300px,100%)] place-self-center">
+      <div className="min-h-[500px] grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] justify-items-start items-center max-w-[800px] gap-4 p-4 bg-primary-product-bg radius-[8px] rounded-[8px]">
+        <div className="w-[min(300px,100%)] max-h-[300px] place-self-center">
           <img
             className="w-full aspect-square object-contain"
             src={product.image}
