@@ -6,7 +6,7 @@ type NavProps = {
 
 export default function Nav({ cartItemsLength }: NavProps) {
   return (
-    <nav className="sticky top-0 z-10 ps-4 pe-4 bg-nav-color">
+    <nav className="sticky top-0 z-50 ps-4 pe-4 bg-nav-color">
       <div className="mx-[auto] w-[min(1200px,100%)] h-[4rem] border-b-[1px] border-solid border-white border-opacity-10">
         <ul className="flex justify-center items-center gap-8 uppercase size text-[0.85rem] font-bold h-full">
           <Link to="/">home</Link>

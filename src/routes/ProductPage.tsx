@@ -19,7 +19,7 @@ export function ProductPage() {
   const product = useLoaderData() as ProductData;
 
   return (
-    <div className="flex justify-center items-center h-view-height">
+    <div className="flex justify-center items-center min-h-view-height">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] justify-items-start items-center max-w-[800px] gap-4 p-4 bg-primary-product-bg radius-[8px] rounded-[8px]">
         <div className="w-[min(300px,100%)] place-self-center">
           <img
