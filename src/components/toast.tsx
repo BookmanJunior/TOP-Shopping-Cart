@@ -7,7 +7,7 @@ type ToastProps = {
 
 export default function ToastList({ toasts, removeToast }: ToastListProps) {
   return (
-    <div className="fixed max-h-view-height right-[5px] bottom-0 w-[min(300px,100%)] p-4 select-none transition-[max-height] z-[100]">
+    <div className="fixed max-h-view-height max-[650px]:top-14 right-[5px] bottom-0 w-[min(300px,100%)] p-4 select-none pointer-events-none transition-[max-height] z-[100]">
       {toasts &&
         toasts.map((toast) => (
           <Toast
